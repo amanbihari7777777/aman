@@ -6,36 +6,59 @@
     <title>Aman Bihari</title>
     <link rel="icon" href="head.jpg" type="image/jpeg"> <!-- Favicon here -->
     <style>
+        /* Body Style with Gradient Background */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
             margin: 0;
             padding: 0;
+            background: linear-gradient(to right, #ff7e5f, #feb47b); /* Gradient from pink to orange */
+            color: white;
         }
+        
+        /* Header Style */
         header {
             text-align: center;
-            background-color: #333;
-            padding: 20px;
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+            padding: 50px;
+            background-image: url('header-background.jpg'); /* Optional: Add an image behind the header */
+            background-size: cover;
+            background-position: center;
+            border-bottom: 2px solid #fff;
         }
+        
         header h1 {
-            color: white;
-            font-size: 3em;
+            font-size: 1.5em;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Shadow for text for better readability */
         }
+
+        /* Photo Album Section */
         .photo-album {
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around;
+            justify-content: center;
             padding: 20px;
+            gap: 20px;
         }
+
         .photo-album img {
-            max-width: 100%; /* Ensure images don't overflow their containers */
-            height: auto; /* Maintain aspect ratio */
+            max-width: 100%;
+            height: auto;
             margin: 10px;
-            border-radius: 10px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease-in-out;
         }
+
         .photo-album img:hover {
-            transform: scale(1.05);
+            transform: scale(1.1);
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5); /* Hover effect for image */
+        }
+
+        /* Optional: Add a pattern background to make the body look more interesting */
+        .photo-album {
+            background: rgba(255, 255, 255, 0.1); /* Slightly transparent background for photos */
+            backdrop-filter: blur(10px); /* Optional blur effect for the background */
         }
     </style>
 </head>

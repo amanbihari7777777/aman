@@ -54,10 +54,14 @@
         .photo {
             position: relative;
             border-radius: 20px;
-            overflow: hidden;
+            overflow: hidden; /* Ensure images stay within the container */
             box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
             background-color: #fff;
+            display: flex; /* Ensure container takes full width */
+            justify-content: center; /* Align image in the center */
+            align-items: center;
+            height: 100%; /* Make sure the card height is flexible */
         }
 
         /* Hover effect on the photo card */
@@ -67,11 +71,12 @@
         }
 
         .photo img {
-            width: 100%;
+            width: 100%;  /* Ensure the image fits within its container */
             height: auto;
             display: block;
             border-radius: 15px;
             transition: transform 0.3s ease-in-out;
+            object-fit: cover; /* Ensures images fill the space without distortion */
         }
 
         /* Hover effect on image */

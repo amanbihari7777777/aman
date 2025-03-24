@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aman Bihari</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3em;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        .photo {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .photo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .photo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .photo img:hover {
+            transform: scale(1.1);
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.3);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .photo:hover .overlay {
+            opacity: 1;
+        }
+
+        .overlay-text {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Stylish Photo Album</h1>
+
+    <div class="container">
+        <div class="photo">
+            <img src="1.jpg" alt="Image 1">
+            <div class="overlay">
+                <div class="overlay-text">Image 1</div>
+            </div>
+        </div>
+        <div class="photo">
+            <img src="2.jpg" alt="Image 2">
+            <div class="overlay">
+                <div class="overlay-text">Image 2</div>
+            </div>
+        </div>
+        <div class="photo">
+            <img src="3.jpg" alt="Image 3">
+            <div class="overlay">
+                <div class="overlay-text">Image 3</div>
+            </div>
+        </div>
+        <div class="photo">
+            <img src="4.jpg" alt="Image 4">
+            <div class="overlay">
+                <div class="overlay-text">Image 4</div>
+            </div>
+        </div>
+        <div class="photo">
+            <img src="5.jpg" alt="Image 5">
+            <div class="overlay">
+                <div class="overlay-text">Image 5</div>
+            </div>
+        </div>
+        <div class="photo">
+            <img src="6.jpg" alt="Image 6">
+            <div class="overlay">
+                <div class="overlay-text">Image 6</div>
+            </div>
+        </div>
+        <div class="photo">
+            <img src="7.jpg" alt="Image 7">
+            <div class="overlay">
+                <div class="overlay-text">Image 7</div>
+            </div>
+        </div>
+        <div class="photo">
+            <img src="8.jpg" alt="Image 8">
+            <div class="overlay">
+                <div class="overlay-text">Image 8</div>
+            </div>
+        </div>
+        <div class="photo">
+            <img src="9.jpg" alt="Image 9">
+            <div class="overlay">
+                <div class="overlay-text">Image 9</div>
+            </div>
+        </div>
+        <div class="photo">
+            <img src="10.jpg" alt="Image 10">
+            <div class="overlay">
+                <div class="overlay-text">Image 10</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

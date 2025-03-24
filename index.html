@@ -46,8 +46,9 @@
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 30px;
             padding: 40px;
-            max-width: 1200px;
+            max-width: 100%;
             width: 100%;
+            box-sizing: border-box;
         }
 
         /* Photo card styles */
@@ -62,6 +63,7 @@
             justify-content: center; /* Align image in the center */
             align-items: center;
             height: 100%; /* Make sure the card height is flexible */
+            max-width: 100%; /* Ensure it doesn't overflow */
         }
 
         /* Hover effect on the photo card */
@@ -77,6 +79,7 @@
             border-radius: 15px;
             transition: transform 0.3s ease-in-out;
             object-fit: cover; /* Ensures images fill the space without distortion */
+            max-width: 100%; /* Prevents the image from overflowing */
         }
 
         /* Hover effect on image */
@@ -119,8 +122,20 @@
                 font-size: 1.8em;
                 letter-spacing: 1px;
             }
+
+            /* Container padding */
             .container {
                 padding: 10px;
+            }
+
+            /* Adjust photo card layout */
+            .photo {
+                height: 250px;  /* Set a specific height for mobile devices */
+            }
+
+            /* Ensure no images overflow */
+            .photo img {
+                object-fit: contain; /* Ensures images fit properly without stretching */
             }
         }
 

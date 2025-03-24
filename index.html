@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aman Bihari</title>
+    
+    <!-- Add favicon -->
+    <link rel="icon" href="head.jpg" type="image/jpg">
+
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -15,18 +19,19 @@
             align-items: center;
             height: 100vh;
             color: #333;
+            flex-direction: column;
         }
 
         h1 {
             text-align: center;
-            font-size: 3em;
-            margin-bottom: 30px;
+            font-size: 2em;
+            margin-bottom: 20px;
             color: #555;
         }
 
         .container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ensure a flexible grid layout */
             gap: 20px;
             padding: 20px;
             max-width: 1200px;
@@ -79,6 +84,13 @@
         .overlay-text {
             font-size: 24px;
             font-weight: bold;
+        }
+
+        /* Make the title smaller for mobile screens */
+        @media screen and (max-width: 600px) {
+            h1 {
+                font-size: 1.5em;
+            }
         }
 
     </style>

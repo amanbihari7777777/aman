@@ -144,6 +144,15 @@
         const videos = document.querySelectorAll('video');
         videos.forEach(video => {
             videoObserver.observe(video);
+            
+            // Add event listener to pause other videos when one starts playing
+            video.addEventListener('play', () => {
+                videos.forEach(otherVideo => {
+                    if (otherVideo !== video) {
+                        otherVideo.pause();
+                    }
+                });
+            });
         });
     });
 </script>

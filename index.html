@@ -115,8 +115,9 @@
 <input type="text" id="searchInput" class="search-bar" placeholder="Search by month and year">
 
 <div class="video-container" data-search="MSD THALA FOR A REASON. MARCH 2025">
-    <h2>MSD</h2>
-    <video id="video1" data-src="1.mp4" controls>
+    <h2>MS Dhoni</h2>
+    <video id="video1" controls>
+        <source src="1.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
     <div class="video-description">
@@ -127,7 +128,8 @@
 
 <div class="video-container" data-search="Drum With Cement Very Dangerous Combination MARCH 2025">
     <h2>Drum With Cement🛢️</h2>
-    <video id="video2" data-src="Drum With Cement.mp4" controls>
+    <video id="video2" controls>
+        <source src="Drum With Cement.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
     <div class="video-description">
@@ -141,6 +143,16 @@
     document.addEventListener('DOMContentLoaded', function () {
         const searchInput = document.getElementById('searchInput');
         const videoContainers = document.querySelectorAll('.video-container');
+
+        // Ensure the video source is set if using 'data-src'
+        videoContainers.forEach(container => {
+            const video = container.querySelector('video');
+            const videoSrc = video.getAttribute('src'); // Get the src attribute
+            if (videoSrc === "") {
+                const dataSrc = container.getAttribute('data-src'); // Use 'data-src' for dynamically setting the source
+                video.setAttribute('src', dataSrc); // Set the actual video source
+            }
+        });
 
         searchInput.addEventListener('input', function () {
             const query = searchInput.value.toLowerCase();

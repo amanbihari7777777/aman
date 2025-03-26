@@ -60,12 +60,14 @@
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
             font-size: 1.5em;
         }
+
         h1 {
             color: #007bff;
             margin-bottom: 10px;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
             font-size: 2.5em;
         }
+
         p {
             line-height: 1.6;
             color: #555;
@@ -97,10 +99,10 @@
 </head>
 <body>
 <h1>Viral Memes</h1>
+
 <div class="video-container">
     <h2>MSD</h2>
-    <video id="myVideo" controls>
-        <source src="1.mp4" type="video/mp4">
+    <video id="video1" data-src="1.mp4" controls>
         Your browser does not support the video tag.
     </video>
     <div class="video-description">
@@ -111,8 +113,7 @@
 
 <div class="video-container">
     <h2>Drum With Cement🛢️</h2>
-    <video id="myVideo" controls>
-        <source src="Drum With Cement.mp4" type="video/mp4">
+    <video id="video2" data-src="Drum With Cement.mp4" controls>
         Your browser does not support the video tag.
     </video>
     <div class="video-description">
@@ -121,5 +122,31 @@
         <p>Video source:<a href="https://www.instagram.com/reel/DHlACnkTXB1/" class="instagram-button" target="_blank">Instagram</a></p>
     </div>
 </div>
+
+<script>
+    // Lazy loading of videos
+    document.addEventListener('DOMContentLoaded', function() {
+        // Function to load the video when it enters the viewport
+        const videoObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const video = entry.target;
+                    const videoSource = video.getAttribute('data-src');
+                    video.setAttribute('src', videoSource);
+                    video.load();  // Load the video
+                    video.removeAttribute('data-src');  // Remove the data-src attribute
+                    observer.unobserve(video);  // Stop observing this video
+                }
+            });
+        }, { threshold: 0.5 });  // 50% of the video should be visible to trigger loading
+
+        // Observe each video element
+        const videos = document.querySelectorAll('video');
+        videos.forEach(video => {
+            videoObserver.observe(video);
+        });
+    });
+</script>
+
 </body>
 </html>

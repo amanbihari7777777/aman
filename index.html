@@ -8,7 +8,7 @@
     <style>
         body {
             margin: 0;
-            font-family: 'Arial', sans-serif;
+            font-family: 'cursive', sans-serif;
             background: linear-gradient(135deg, #ff6e7f, #bfe9ff, #62c4ff);
             background-size: 400% 400%;
             animation: gradientAnimation 15s ease infinite;
@@ -143,15 +143,17 @@
     document.addEventListener('DOMContentLoaded', function () {
         const searchInput = document.getElementById('searchInput');
         const videoContainers = document.querySelectorAll('.video-container');
+        const videos = document.querySelectorAll('video');
 
-        // Ensure the video source is set if using 'data-src'
-        videoContainers.forEach(container => {
-            const video = container.querySelector('video');
-            const videoSrc = video.getAttribute('src'); // Get the src attribute
-            if (videoSrc === "") {
-                const dataSrc = container.getAttribute('data-src'); // Use 'data-src' for dynamically setting the source
-                video.setAttribute('src', dataSrc); // Set the actual video source
-            }
+        // Ensure only one video plays at a time
+        videos.forEach(video => {
+            video.addEventListener('play', function () {
+                videos.forEach(otherVideo => {
+                    if (otherVideo !== video) {
+                        otherVideo.pause();  // Pause all other videos
+                    }
+                });
+            });
         });
 
         searchInput.addEventListener('input', function () {

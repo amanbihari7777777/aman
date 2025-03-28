@@ -134,7 +134,7 @@
     <div class="video-description">
         <h3>THALA FOR A REASON.</h3>
         <p>MARCH 2025</p>
-        <button class="share-button" onclick="shareVideo('1.mp4')">Share Video</button>
+        <button class="share-button" onclick="shareVideo()">Share Video</button>
     </div>
 </div>
 
@@ -148,7 +148,7 @@
         <h3>Drum and cement a very dangerous combination</h3>
         <p>MARCH 2025</p>
         <p>Video source: <a href="https://www.instagram.com/reel/DHlACnkTXB1/" class="instagram-button" target="_blank">Instagram</a></p>
-        <button class="share-button" onclick="shareVideo('Drum With Cement.mp4')">Share Video</button>
+        <button class="share-button" onclick="shareVideo()">Share Video</button>
     </div>
 </div>
 
@@ -183,12 +183,12 @@
         });
     });
 
-    function shareVideo(videoSrc) {
+    function shareVideo() {
         if (navigator.share) {
             navigator.share({
-                title: 'Check out this video!',
-                text: 'I found this amazing video.',
-                url: window.location.href + videoSrc // This assumes the video files are hosted on the same domain
+                title: 'Check out this amazing site!',
+                text: 'I found this awesome site with viral videos.',
+                url: window.location.href // Share the entire webpage URL
             }).catch(error => console.error('Error sharing:', error));
         } else {
             alert('Sharing not supported on this browser.');

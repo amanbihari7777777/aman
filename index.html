@@ -96,17 +96,6 @@
             text-decoration: none;
         }
 
-        .share-button {
-            background-color: #007bff;
-            border: none;
-            padding: 10px 20px;
-            margin-top: 15px;
-            font-size: 1.1em;
-            color: white;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
         .search-bar {
             margin: 20px;
             padding: 10px;
@@ -125,7 +114,7 @@
 <!-- Search Bar -->
 <input type="text" id="searchInput" class="search-bar" placeholder="Search by month and year">
 
-<div class="video-container" data-search="MSD THALA FOR A REASON. MARCH 2025" id="video1Container">
+<div class="video-container" data-search="MSD THALA FOR A REASON. MARCH 2025">
     <h2>MS Dhoni</h2>
     <video id="video1" controls>
         <source src="1.mp4" type="video/mp4">
@@ -134,11 +123,10 @@
     <div class="video-description">
         <h3>THALA FOR A REASON.</h3>
         <p>MARCH 2025</p>
-        <button class="share-button" onclick="shareVideo('1')">Share Video</button>
     </div>
 </div>
 
-<div class="video-container" data-search="Drum With Cement Very Dangerous Combination MARCH 2025" id="video2Container">
+<div class="video-container" data-search="Drum With Cement Very Dangerous Combination MARCH 2025">
     <h2>Drum With Cement🛢️</h2>
     <video id="video2" controls>
         <source src="Drum With Cement.mp4" type="video/mp4">
@@ -147,8 +135,7 @@
     <div class="video-description">
         <h3>Drum and cement a very dangerous combination</h3>
         <p>MARCH 2025</p>
-        <p>Video source: <a href="https://www.instagram.com/reel/DHlACnkTXB1/" class="instagram-button" target="_blank">Instagram</a></p>
-        <button class="share-button" onclick="shareVideo('2')">Share Video</button>
+        <p>Video source:<a href="https://www.instagram.com/reel/DHlACnkTXB1/" class="instagram-button" target="_blank">Instagram</a></p>
     </div>
 </div>
 
@@ -169,43 +156,34 @@
             });
         });
 
-        searchInput.addEventListener('input', function () {
-            const query = searchInput.value.toLowerCase();
-            
+        // Function to filter videos based on the URL search parameter
+        function filterVideosFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('search') ? urlParams.get('search').toLowerCase() : '';
+            searchInput.value = searchQuery;  // Update the search bar with the query
+
             videoContainers.forEach(container => {
                 const textContent = container.getAttribute('data-search').toLowerCase();
-                if (textContent.includes(query)) {
+                if (textContent.includes(searchQuery)) {
                     container.style.display = ''; // Show the video container
                 } else {
                     container.style.display = 'none'; // Hide the video container
                 }
             });
+        }
+
+        // Update the URL when the search input changes (optional)
+        searchInput.addEventListener('input', function () {
+            const query = searchInput.value.toLowerCase();
+            const url = new URL(window.location);
+            url.searchParams.set('search', query);  // Update the search parameter in the URL
+            window.history.pushState({}, '', url);   // Update the URL without reloading
+            filterVideosFromUrl();
         });
 
-        // Check if a video ID is passed in the URL and play that video
-        const urlParams = new URLSearchParams(window.location.search);
-        const videoId = urlParams.get('video');
-        if (videoId) {
-            const videoToPlay = document.getElementById('video' + videoId);
-            if (videoToPlay) {
-                videoToPlay.play();
-            }
-        }
+        // Call the function to filter videos when the page loads
+        filterVideosFromUrl();
     });
-
-    // Share button function
-    function shareVideo(videoId) {
-        const videoUrl = window.location.href.split('?')[0] + '?video=' + videoId;
-        if (navigator.share) {
-            navigator.share({
-                title: 'Check out this awesome video!',
-                text: 'I found this amazing video!',
-                url: videoUrl // Share the URL of the video
-            }).catch(error => console.error('Error sharing:', error));
-        } else {
-            alert('Sharing not supported on this browser.');
-        }
-    }
 </script>
 
 </body>

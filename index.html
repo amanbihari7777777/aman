@@ -125,7 +125,7 @@
 <!-- Search Bar -->
 <input type="text" id="searchInput" class="search-bar" placeholder="Search by month and year">
 
-<div class="video-container" data-search="MSD THALA FOR A REASON. MARCH 2025">
+<div class="video-container" data-search="MSD THALA FOR A REASON. MARCH 2025" id="video1Container">
     <h2>MS Dhoni</h2>
     <video id="video1" controls>
         <source src="1.mp4" type="video/mp4">
@@ -134,11 +134,11 @@
     <div class="video-description">
         <h3>THALA FOR A REASON.</h3>
         <p>MARCH 2025</p>
-        <button class="share-button" onclick="shareVideo()">Share Video</button>
+        <button class="share-button" onclick="shareVideo('1')">Share Video</button>
     </div>
 </div>
 
-<div class="video-container" data-search="Drum With Cement Very Dangerous Combination MARCH 2025">
+<div class="video-container" data-search="Drum With Cement Very Dangerous Combination MARCH 2025" id="video2Container">
     <h2>Drum With Cement🛢️</h2>
     <video id="video2" controls>
         <source src="Drum With Cement.mp4" type="video/mp4">
@@ -148,7 +148,7 @@
         <h3>Drum and cement a very dangerous combination</h3>
         <p>MARCH 2025</p>
         <p>Video source: <a href="https://www.instagram.com/reel/DHlACnkTXB1/" class="instagram-button" target="_blank">Instagram</a></p>
-        <button class="share-button" onclick="shareVideo()">Share Video</button>
+        <button class="share-button" onclick="shareVideo('2')">Share Video</button>
     </div>
 </div>
 
@@ -181,14 +181,26 @@
                 }
             });
         });
+
+        // Check if a video ID is passed in the URL and play that video
+        const urlParams = new URLSearchParams(window.location.search);
+        const videoId = urlParams.get('video');
+        if (videoId) {
+            const videoToPlay = document.getElementById('video' + videoId);
+            if (videoToPlay) {
+                videoToPlay.play();
+            }
+        }
     });
 
-    function shareVideo() {
+    // Share button function
+    function shareVideo(videoId) {
+        const videoUrl = window.location.href.split('?')[0] + '?video=' + videoId;
         if (navigator.share) {
             navigator.share({
-                title: 'Check out this amazing site!',
-                text: 'I found this awesome site with viral videos.',
-                url: window.location.href // Share the entire webpage URL
+                title: 'Check out this awesome video!',
+                text: 'I found this amazing video!',
+                url: videoUrl // Share the URL of the video
             }).catch(error => console.error('Error sharing:', error));
         } else {
             alert('Sharing not supported on this browser.');

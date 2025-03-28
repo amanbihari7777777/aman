@@ -96,6 +96,17 @@
             text-decoration: none;
         }
 
+        .share-button {
+            background-color: #007bff;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 15px;
+            font-size: 1.1em;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
         .search-bar {
             margin: 20px;
             padding: 10px;
@@ -123,6 +134,7 @@
     <div class="video-description">
         <h3>THALA FOR A REASON.</h3>
         <p>MARCH 2025</p>
+        <button class="share-button" onclick="shareVideo('1.mp4')">Share Video</button>
     </div>
 </div>
 
@@ -135,7 +147,8 @@
     <div class="video-description">
         <h3>Drum and cement a very dangerous combination</h3>
         <p>MARCH 2025</p>
-        <p>Video source:<a href="https://www.instagram.com/reel/DHlACnkTXB1/" class="instagram-button" target="_blank">Instagram</a></p>
+        <p>Video source: <a href="https://www.instagram.com/reel/DHlACnkTXB1/" class="instagram-button" target="_blank">Instagram</a></p>
+        <button class="share-button" onclick="shareVideo('Drum With Cement.mp4')">Share Video</button>
     </div>
 </div>
 
@@ -169,6 +182,18 @@
             });
         });
     });
+
+    function shareVideo(videoSrc) {
+        if (navigator.share) {
+            navigator.share({
+                title: 'Check out this video!',
+                text: 'I found this amazing video.',
+                url: window.location.href + videoSrc // This assumes the video files are hosted on the same domain
+            }).catch(error => console.error('Error sharing:', error));
+        } else {
+            alert('Sharing not supported on this browser.');
+        }
+    }
 </script>
 
 </body>

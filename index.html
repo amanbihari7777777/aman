@@ -15,9 +15,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             min-height: 100vh;
             color: #333;
-            position: relative;
         }
 
         @keyframes gradientAnimation {
@@ -30,13 +30,6 @@
             100% {
                 background-position: 0% 50%;
             }
-        }
-
-        .header-container {
-            width: 100%;
-            text-align: center;
-            position: relative;
-            margin-top: 20px;
         }
 
         .video-container {
@@ -113,108 +106,85 @@
             border: 2px solid #007bff;
             outline: none;
         }
-
-        /* Home button styles */
-        .home-button {
-            position: absolute;
-            left: 20px;
-            top: 50px; /* Positioned below h1 */
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 1em;
-            text-decoration: none;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s;
-        }
-
-        .home-button:hover {
-            background-color: #0056b3;
-        }
     </style>
 </head>
 <body>
-    <div class="header-container">
-        <h1>Viral Videos</h1>
-        <a href="index.html" class="home-button">Home</a>
+<h1>Viral Videos</h1>
+
+<!-- Search Bar -->
+<input type="text" id="searchInput" class="search-bar" placeholder="Search by month and year">
+
+<div class="video-container" data-search="MSD THALA FOR A REASON. MARCH 2025">
+    <h2>MS Dhoni</h2>
+    <video id="video1" controls>
+        <source src="1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="video-description">
+        <h3>THALA FOR A REASON.</h3>
+        <p>MARCH 2025</p>
     </div>
+</div>
 
-    <!-- Search Bar -->
-    <input type="text" id="searchInput" class="search-bar" placeholder="Search by month and year">
-
-    <div class="video-container" data-search="MSD THALA FOR A REASON. MARCH 2025">
-        <h2>MS Dhoni</h2>
-        <video id="video1" controls>
-            <source src="1.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="video-description">
-            <h3>THALA FOR A REASON.</h3>
-            <p>MARCH 2025</p>
-        </div>
+<div class="video-container" data-search="Drum With Cement Very Dangerous Combination MARCH 2025">
+    <h2>Drum With Cement🛢️</h2>
+    <video id="video2" controls>
+        <source src="Drum With Cement.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="video-description">
+        <h3>Drum and cement a very dangerous combination</h3>
+        <p>MARCH 2025</p>
+        <p>Video source:<a href="https://www.instagram.com/reel/DHlACnkTXB1/" class="instagram-button" target="_blank">Instagram</a></p>
     </div>
+</div>
 
-    <div class="video-container" data-search="Drum With Cement Very Dangerous Combination MARCH 2025">
-        <h2>Drum With Cement🛢️</h2>
-        <video id="video2" controls>
-            <source src="Drum With Cement.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="video-description">
-            <h3>Drum and cement a very dangerous combination</h3>
-            <p>MARCH 2025</p>
-            <p>Video source:<a href="https://www.instagram.com/reel/DHlACnkTXB1/" class="instagram-button" target="_blank">Instagram</a></p>
-        </div>
-    </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const searchInput = document.getElementById('searchInput');
+        const videoContainers = document.querySelectorAll('.video-container');
+        const videos = document.querySelectorAll('video');
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const searchInput = document.getElementById('searchInput');
-            const videoContainers = document.querySelectorAll('.video-container');
-            const videos = document.querySelectorAll('video');
-
-            // Ensure only one video plays at a time
-            videos.forEach(video => {
-                video.addEventListener('play', function () {
-                    videos.forEach(otherVideo => {
-                        if (otherVideo !== video) {
-                            otherVideo.pause();  // Pause all other videos
-                        }
-                    });
-                });
-            });
-
-            // Function to filter videos based on the URL search parameter
-            function filterVideosFromUrl() {
-                const urlParams = new URLSearchParams(window.location.search);
-                const searchQuery = urlParams.get('search') ? urlParams.get('search').toLowerCase() : '';
-                searchInput.value = searchQuery;  // Update the search bar with the query
-
-                videoContainers.forEach(container => {
-                    const textContent = container.getAttribute('data-search').toLowerCase();
-                    if (textContent.includes(searchQuery)) {
-                        container.style.display = ''; // Show the video container
-                    } else {
-                        container.style.display = 'none'; // Hide the video container
+        // Ensure only one video plays at a time
+        videos.forEach(video => {
+            video.addEventListener('play', function () {
+                videos.forEach(otherVideo => {
+                    if (otherVideo !== video) {
+                        otherVideo.pause();  // Pause all other videos
                     }
                 });
-            }
-
-            // Update the URL when the search input changes (optional)
-            searchInput.addEventListener('input', function () {
-                const query = searchInput.value.toLowerCase();
-                const url = new URL(window.location);
-                url.searchParams.set('search', query);  // Update the search parameter in the URL
-                window.history.pushState({}, '', url);   // Update the URL without reloading
-                filterVideosFromUrl();
             });
+        });
 
-            // Call the function to filter videos when the page loads
+        // Function to filter videos based on the URL search parameter
+        function filterVideosFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchQuery = urlParams.get('search') ? urlParams.get('search').toLowerCase() : '';
+            searchInput.value = searchQuery;  // Update the search bar with the query
+
+            videoContainers.forEach(container => {
+                const textContent = container.getAttribute('data-search').toLowerCase();
+                if (textContent.includes(searchQuery)) {
+                    container.style.display = ''; // Show the video container
+                } else {
+                    container.style.display = 'none'; // Hide the video container
+                }
+            });
+        }
+
+        // Update the URL when the search input changes (optional)
+        searchInput.addEventListener('input', function () {
+            const query = searchInput.value.toLowerCase();
+            const url = new URL(window.location);
+            url.searchParams.set('search', query);  // Update the search parameter in the URL
+            window.history.pushState({}, '', url);   // Update the URL without reloading
             filterVideosFromUrl();
         });
-    </script>
+
+        // Call the function to filter videos when the page loads
+        filterVideosFromUrl();
+    });
+</script>
+
 </body>
 </html>

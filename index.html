@@ -15,9 +15,9 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             min-height: 100vh;
             color: #333;
+            position: relative;
         }
 
         @keyframes gradientAnimation {
@@ -30,6 +30,13 @@
             100% {
                 background-position: 0% 50%;
             }
+        }
+
+        .header-container {
+            width: 100%;
+            text-align: center;
+            position: relative;
+            margin-top: 20px;
         }
 
         .video-container {
@@ -110,15 +117,15 @@
         /* Home button styles */
         .home-button {
             position: absolute;
-            top: 20px;
             left: 20px;
+            top: 50px; /* Positioned below h1 */
             background-color: #007bff;
             color: white;
             border: none;
             padding: 10px 15px;
             border-radius: 5px;
             cursor: pointer;
-            font-size: 0.5em;
+            font-size: 1em;
             text-decoration: none;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             transition: background-color 0.3s;
@@ -130,11 +137,12 @@
     </style>
 </head>
 <body>
-uranium
-    <h1>Viral Videos</h1>
-    <!-- Home Button -->
-    <a href="index.html" class="home-button">Home</a>
-<!-- Search Bar -->
+    <div class="header-container">
+        <h1>Viral Videos</h1>
+        <a href="index.html" class="home-button">Home</a>
+    </div>
+
+    <!-- Search Bar -->
     <input type="text" id="searchInput" class="search-bar" placeholder="Search by month and year">
 
     <div class="video-container" data-search="MSD THALA FOR A REASON. MARCH 2025">
@@ -208,6 +216,5 @@ uranium
             filterVideosFromUrl();
         });
     </script>
-
 </body>
 </html>
